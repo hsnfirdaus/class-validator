@@ -1,0 +1,31 @@
+{
+  "name": "hsnfirdaus/class-validator",
+  "description": "Class Validator using php attribute",
+  "type": "library",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.7",
+    "doctrine/coding-standard": "^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hsnfirdaus\\ClassValidator\\": "src/"
+    },
+    "files": [
+      "src/Locale/ID.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Muhammad Hasan Firdaus",
+      "email": "hasanteam008@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
