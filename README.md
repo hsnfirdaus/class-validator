@@ -52,7 +52,7 @@ Then call validate method, it will throw exception if found an error. Currently 
 
 ## Available Attributes
 
-Available attributes:
+Available attributes (see [src/Attribute](src/Attribute/) folder):
 
 - `IsEmail()` : Email validation (using php `filter_var` function).
 - `IsEnum(enum: ExampleEnum::class)` : Enum validation from string value.
@@ -65,7 +65,7 @@ Available attributes:
 
 ## Error Message
 
-Currently only Indonesian error message will thrown (see [ID.php](src/Locale/ID.php)). This can be changed to custom error message in `Validator::validate` method in second argument. Add array with language key in that param. Example:
+Currently only Indonesian error message will thrown (see [src/Locale/ID.php](src/Locale/ID.php)). This can be changed to custom error message in `Validator::validate` method in second argument. Add array with language key in that param. Example:
 
 ```php
 Validator::validate($object, [
