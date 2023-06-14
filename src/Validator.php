@@ -30,7 +30,7 @@ class Validator
     /** @param list<string, mixed> $config */
     private static function validateProperty(ReflectionProperty $property, object $object, array $config): void
     {
-        if (! $property->isInitialized($object)) {
+        if (! $property->isInitialized($object) || $property->getValue($object) === '' || $property->getValue($object) === null) {
             if (! $property->getAttributes(IsOptional::class)) {
                 throw new PropertyError($property, 'NOT_EMPTY', $config);
             }
