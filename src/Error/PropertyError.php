@@ -13,12 +13,12 @@ use function preg_split;
 use function sprintf;
 use function ucwords;
 
-use const Hsnfirdaus\ClassValidator\Locale\ID;
-
 final class PropertyError extends Exception
 {
-    /** @param list<string, mixed> $config */
-    public function __construct(ReflectionProperty $property, string $langKey, array $config)
+    /** @var array<string, string> $messageList */
+    protected static array $messageList;
+
+    public function __construct(ReflectionProperty $property, string $langKey, mixed ...$additionalSprint)
     {
         $nameAttributes = $property->getAttributes(Name::class);
         if (@$nameAttributes[0]) {
@@ -32,8 +32,16 @@ final class PropertyError extends Exception
             $name = ucwords(implode(' ', preg_split('/(?=[A-Z])/', $name)));
         }
 
-        $defaultLang = ID;
+        $defaultMsg = '%s is invalid!';
 
-        parent::__construct(sprintf($config['language'][$langKey] ?? $defaultLang[$langKey], $name));
+        $fmt = sprintf(static::$messageList[$langKey] ?? $defaultMsg, $name, ...$additionalSprint);
+
+        parent::__construct($fmt);
+    }
+
+    /** @param array<string, string> $messageList */
+    public static function setMessageList(array $messageList): void
+    {
+        static::$messageList = $messageList;
     }
 }

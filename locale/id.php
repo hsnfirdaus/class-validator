@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hsnfirdaus\ClassValidator\Locale;
-
-const ID = [
+return [
     'NOT_EMPTY' => '%s tidak boleh kosong!',
     'EMAIL_INVALID' => 'Format %s tidak valid!',
     'ENUM_INVALID' => '%s tidak valid!',

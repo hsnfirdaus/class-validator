@@ -1,3 +1,4 @@
 /vendor/
 .phpcs-cache
 phpcs.xml
+.vscode

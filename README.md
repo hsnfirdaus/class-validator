@@ -23,6 +23,7 @@ namespace MyApp\Contract\User;
 
 use Hsnfirdaus\ClassValidator\Attribute\IsEnum;
 use Hsnfirdaus\ClassValidator\Attribute\IsNotEmpty;
+use Hsnfirdaus\ClassValidator\Attribute\IsOptional;
 use Hsnfirdaus\ClassValidator\Validator;
 use MyApp\Entity\Enum\UserRole;
 use MyApp\Entity\Enum\UserType;
@@ -32,13 +33,13 @@ class AddUserContract
     #[Name(name: 'User Type')]
     #[IsNotEmpty]
     #[IsEnum(enum: UserType::class)]
-    public string $type;
+    public string $type = 'Can\'t be empty';
 
     #[IsNotEmpty]
     #[IsEnum(enum: UserRole::class)]
-    public string $role;
+    public string $role = 'ValidEnumValue';
 
-    #[IsNotEmpty]
+    #[IsOptional]
     public string $identifier;
 
     public function validate()
@@ -65,12 +66,27 @@ Available attributes (see [src/Attribute](src/Attribute/) folder):
 
 ## Error Message
 
-Currently only Indonesian error message will thrown (see [src/Locale/ID.php](src/Locale/ID.php)). This can be changed to custom error message in `Validator::validate` method in second argument. Add array with language key in that param. Example:
+Currently only English and Indonesian error message will thrown (see [locale](locale)). Default will be English.
+
+To change locale you can use and `setLang` method in your root or boot project:
 
 ```php
-Validator::validate($object, [
-    'language' => [
-        'NOT_EMPTY' => '%s can\'t be empty!'
-    ]
-]);
+<?php
+
+declare(strict_types=1);
+
+require __DIR__.'/vendor/autoload.php';
+
+use Hsnfirdaus\ClassValidator\Validator;
+
+Validator::setLang('id');
+
+// Then you can call  Validator::validate method
+```
+
+Or, you can use your own locale with `setLangDir` method. For example, create your locale file in `__DIR__.'/locale/kr.php`, then you can use:
+
+```php
+Validator::setLangDir(__DIR__.'/locale');
+Validator::setLang('kr');
 ```

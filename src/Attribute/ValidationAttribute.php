@@ -8,6 +8,5 @@ use ReflectionProperty;
 
 interface ValidationAttribute
 {
-    /** @param list<string, mixed> $config */
-    public function validateProperty(ReflectionProperty $property, object $object, array $config): void;
+    public function validateProperty(ReflectionProperty $property, object $object): void;
 }
