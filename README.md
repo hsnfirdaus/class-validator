@@ -49,7 +49,7 @@ class AddUserContract
 }
 ```
 
-Then call validate method, it will throw exception if found an error. Currently this package only support property attribute, not support nested validation yet.
+Then call validate method, it will throw exception if found an error. Currently this package only support property attribute.
 
 ## Available Attributes
 
@@ -63,6 +63,8 @@ Available attributes (see [src/Attribute](src/Attribute/) folder):
 - `IsOptional()` : Attribute to mark the property is optional, allow to be not defined.
 - `IsString(length?: number, minLength?: number, maxLength?: number)` : Validate string length.
 - `Name(name: string)` : Set error message field name (optional, default will be the property name).
+- `ValidateArrayClass(type: string)` : Nested validate array of class.
+- `ValidateClass()` : Nested validate class.
 
 ## Error Message
 

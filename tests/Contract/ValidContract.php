@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/ExampleEnum.php';
+require __DIR__ . '/NestedContract.php';
 
 use Hsnfirdaus\ClassValidator\Attribute\IsEmail;
 use Hsnfirdaus\ClassValidator\Attribute\IsEnum;
@@ -12,6 +13,8 @@ use Hsnfirdaus\ClassValidator\Attribute\IsNumeric;
 use Hsnfirdaus\ClassValidator\Attribute\IsOptional;
 use Hsnfirdaus\ClassValidator\Attribute\IsString;
 use Hsnfirdaus\ClassValidator\Attribute\Name;
+use Hsnfirdaus\ClassValidator\Attribute\ValidateArrayClass;
+use Hsnfirdaus\ClassValidator\Attribute\ValidateClass;
 
 final class ValidContract
 {
@@ -36,4 +39,23 @@ final class ValidContract
 
     #[IsString(length: 6)]
     public string $string = 'STRING';
+
+    /** @var NestedContract[] $parentOfNested */
+    #[ValidateArrayClass(type: NestedContract::class)]
+    public array $parentOfNested;
+
+    #[ValidateClass(type: NestedContract::class)]
+    public mixed $parentOfNestedClass;
+
+    public function __construct()
+    {
+        $item1                  = new NestedContract();
+        $item1->exampleProperty = 'So valid';
+
+        $this->parentOfNested = [$item1];
+
+        $nestedClass                  = new NestedContract();
+        $nestedClass->exampleProperty = 'So valid';
+        $this->parentOfNestedClass    = $nestedClass;
+    }
 }
