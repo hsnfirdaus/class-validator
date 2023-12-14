@@ -8,6 +8,7 @@ use Attribute;
 use Hsnfirdaus\ClassValidator\Error\PropertyError;
 use ReflectionProperty;
 
+use function is_bool;
 use function trim;
 
 /**
@@ -19,7 +20,7 @@ class IsNotEmpty implements ValidationAttribute
     public function validateProperty(ReflectionProperty $property, object $object): void
     {
         $value = $property->getValue($object);
-        if ($value === null || trim((string) $value) === '') {
+        if ($value === null || (! is_bool($value) && trim((string) $value) === '')) {
             throw new PropertyError($property, 'NOT_EMPTY');
         }
     }
