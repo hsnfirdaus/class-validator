@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/ExampleEnum.php';
-require __DIR__ . '/NestedContract.php';
+namespace Hsnfirdaus\ClassValidator\Test\Contract;
 
 use Hsnfirdaus\ClassValidator\Attribute\IsEmail;
 use Hsnfirdaus\ClassValidator\Attribute\IsEnum;
@@ -24,7 +23,7 @@ final class ValidContract
     #[IsEmail]
     public string $email = 'hasanteam008@gmail.com';
 
-    #[IsEnum(enum: ExampleEnum::class)]
+    #[IsEnum(enum: MyType::class)]
     public string $enum = 'FIRST_VALUE';
 
     #[IsInteger]

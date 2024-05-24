@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Hsnfirdaus\ClassValidator\Test;
+
+use Hsnfirdaus\ClassValidator\Test\Contract\ValidContract;
 use Hsnfirdaus\ClassValidator\Validator;
 use PHPUnit\Framework\TestCase;
 

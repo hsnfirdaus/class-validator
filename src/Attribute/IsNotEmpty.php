@@ -8,11 +8,8 @@ use Attribute;
 use Hsnfirdaus\ClassValidator\Error\PropertyError;
 use ReflectionProperty;
 
-use function is_bool;
-use function trim;
-
 /**
- * Validate the value is not empty string or null
+ * Validate the value is not empty using php function
  */
 #[Attribute(Attribute::TARGET_PROPERTY)]
 class IsNotEmpty implements ValidationAttribute
@@ -20,7 +17,7 @@ class IsNotEmpty implements ValidationAttribute
     public function validateProperty(ReflectionProperty $property, object $object): void
     {
         $value = $property->getValue($object);
-        if ($value === null || (! is_bool($value) && trim((string) $value) === '')) {
+        if (empty($value)) {
             throw new PropertyError($property, 'NOT_EMPTY');
         }
     }
