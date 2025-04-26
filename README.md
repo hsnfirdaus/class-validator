@@ -1,6 +1,10 @@
-# Class Validator
+# Class Validator (DEPRECATED)
 
 PHP Class Validator using php 8.0 attributes.
+
+> [!CAUTION]
+> This package no longer maintained, use [symfony/validator](https://github.com/symfony/validator) instead.
+
 
 ## Installation
 
